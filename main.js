@@ -1,12 +1,14 @@
 import * as THREE from "three";
-import CelestialObject from "./src/CelestialObject.js";
+
+import Sun from "./src/Sun.js";
+import getPlanets from "./src/planets.js";
 
 const width = window.innerWidth;
 const height = window.innerHeight;
 const aspectRation = width / height;
 const fieldOfView = 75;
-const near = 0.1;
-const far = 1000;
+const near = 100;
+const far = 16000;
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -19,21 +21,26 @@ const camera = new THREE.PerspectiveCamera(
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(width, height);
 document.body.appendChild(renderer.domElement);
+// const axesHelper = new THREE.AxesHelper( 10000 );
+// scene.add( axesHelper );
 
-// const geometry = new THREE.BoxGeometry(1, 1, 1);
-// const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-// const cube = new THREE.Mesh(geometry, material);
-// scene.add(cube);
 
-const Sun = new CelestialObject(scene);
+const sun = new Sun(scene);
+const planets = getPlanets(scene);
 
-camera.position.z = 5;
+const celestialObjects = [
+  sun,
+  ...planets
+];
+
+camera.position.z = 14000;
 
 function animate() {
   requestAnimationFrame(animate);
 
-  // cube.rotation.x += 0.01;
-  // cube.rotation.y += 0.01;
+  celestialObjects.forEach((celestialObject) => {
+    celestialObject.update();
+  });
 
   renderer.render(scene, camera);
 }
