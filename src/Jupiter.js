@@ -5,3 +5,4 @@ export default class Jupiter extends CelestialObject {
     super(scene, '../assets/textures/jupiter.jpg',3, 'jupiter',0.08, 60);
   }
 }
+

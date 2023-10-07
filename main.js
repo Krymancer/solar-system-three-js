@@ -9,8 +9,8 @@ import Timer from "./src/Timer.js";
 const width = window.innerWidth;
 const height = window.innerHeight;
 const aspectRation = width / height;
-const fieldOfView = 75;
-const near = 100;
+const fieldOfView = 50;
+const near = 10;
 const far = 16000;
 
 const scene = new THREE.Scene();
@@ -21,7 +21,7 @@ const camera = new THREE.PerspectiveCamera(
   far
 );
 
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(width, height);
 document.body.appendChild(renderer.domElement);
 

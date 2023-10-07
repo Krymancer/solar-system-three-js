@@ -5,3 +5,4 @@ export default class Mars extends CelestialObject {
     super(scene, '../assets/textures/mars.jpg', 1.8, 'mars',0.2,40);
   }
 }
+

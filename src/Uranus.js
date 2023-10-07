@@ -5,3 +5,4 @@ export default class Uranus extends CelestialObject {
     super(scene, '../assets/textures/uranus.jpg', 1.75, 'uranus',0.04,80);
   }
 }
+

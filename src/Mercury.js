@@ -5,3 +5,4 @@ export default class Mercury extends CelestialObject {
     super(scene, '../assets/textures/mercury.jpg', 1, 'mercury',0.5,10);
   }
 }
+

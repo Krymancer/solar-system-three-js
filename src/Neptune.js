@@ -5,3 +5,4 @@ export default class Neptune extends CelestialObject {
     super(scene, '../assets/textures/neptune.jpg', 0.8,'neptune',0.02,90);
   }
 }
+
