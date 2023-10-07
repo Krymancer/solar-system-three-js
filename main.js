@@ -18,7 +18,7 @@ const camera = new THREE.PerspectiveCamera(
   far
 );
 
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(width, height);
 document.body.appendChild(renderer.domElement);
 // const axesHelper = new THREE.AxesHelper( 10000 );
@@ -33,15 +33,18 @@ const celestialObjects = [
   ...planets
 ];
 
-camera.position.z = 14000;
+
+camera.position.set(0,75,200)
+
 
 function animate() {
   requestAnimationFrame(animate);
 
   celestialObjects.forEach((celestialObject) => {
     celestialObject.update();
+    if(celestialObject.object.userData.id != 'sun')
+      celestialObject.translation();
   });
-
   renderer.render(scene, camera);
 }
 
