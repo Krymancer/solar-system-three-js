@@ -6,8 +6,8 @@ import getPlanets from "./src/planets.js";
 const width = window.innerWidth;
 const height = window.innerHeight;
 const aspectRation = width / height;
-const fieldOfView = 75;
-const near = 100;
+const fieldOfView = 50;
+const near = 10;
 const far = 16000;
 
 const scene = new THREE.Scene();
@@ -34,7 +34,8 @@ const celestialObjects = [
 ];
 
 
-camera.position.set(0,75,200)
+camera.position.set(0,25,145)
+
 
 
 function animate() {
