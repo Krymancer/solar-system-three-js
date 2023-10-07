@@ -1,7 +1,10 @@
 import * as THREE from "three";
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 import Sun from "./src/Sun.js";
+import StarField from "./src/StarField.js";
 import getPlanets from "./src/planets.js";
+import Timer from "./src/Timer.js";
 
 const width = window.innerWidth;
 const height = window.innerHeight;
@@ -21,10 +24,13 @@ const camera = new THREE.PerspectiveCamera(
 const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(width, height);
 document.body.appendChild(renderer.domElement);
+
 // const axesHelper = new THREE.AxesHelper( 10000 );
 // scene.add( axesHelper );
 
+const controls = new OrbitControls( camera, renderer.domElement );
 
+const starField = new StarField(scene);
 const sun = new Sun(scene);
 const planets = getPlanets(scene);
 
@@ -33,20 +39,21 @@ const celestialObjects = [
   ...planets
 ];
 
+camera.position.set(0,25,145);
+controls.update();
 
-camera.position.set(0,25,145)
+function main() {
+  const timer = new Timer();
 
+  timer.update = function update(deltaTime) {
+    celestialObjects.forEach((celestialObject) => {
+      celestialObject.update(deltaTime);
+    });
+    controls.update();
+    renderer.render(scene, camera);
+  }
 
-
-function animate() {
-  requestAnimationFrame(animate);
-
-  celestialObjects.forEach((celestialObject) => {
-    celestialObject.update();
-    if(celestialObject.object.userData.id != 'sun')
-      celestialObject.translation();
-  });
-  renderer.render(scene, camera);
+  timer.start();
 }
 
-animate();
+main();

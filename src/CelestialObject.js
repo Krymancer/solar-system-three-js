@@ -18,8 +18,7 @@ export default class CelestialObject {
     this.scene.add(this.object);
     this.scaleVector = new THREE.Vector3();
 
-    if(id != 'sun'){
-      
+    if(orbit){
       var shape = new THREE.EllipseCurve(0, 0, orbit, orbit);
       // Obtém os pontos espaçados ao longo da forma
       var spacedPoints = shape.getSpacedPoints(128);
@@ -27,8 +26,8 @@ export default class CelestialObject {
       var geometry = new THREE.BufferGeometry().setFromPoints(spacedPoints);
       // Rotaciona a geometria em 90 graus no eixo X
       geometry.rotateX(THREE.MathUtils.degToRad(-90));
-      // Cria um material básico de linha com a cor amarela
-      var material = new THREE.LineBasicMaterial({color: "yellow"});
+      // Cria um material básico de linha com a cor cinza
+      var material = new THREE.LineBasicMaterial({color: "gray"});
       // Cria uma linha com a geometria e o material
       var orbit = new THREE.Line(geometry, material);
       // Adiciona a linha à cena
@@ -37,14 +36,14 @@ export default class CelestialObject {
 
   }
   
-  update() {
-    this.rotationAngle += this.rotationSpeed;
+  update(deltaTime) {
+    this.rotationAngle += this.rotationSpeed * deltaTime;
     this.object.rotation.y = this.rotationAngle;
+    this.translation(deltaTime);
   }
 
-  translation() {
-    let timestamp = Date.now() * 0.0001;
-    this.mesh.position.x = Math.cos(timestamp * this.rotationSpeed) * this.orbit;
-    this.mesh.position.z = Math.sin(timestamp * this.rotationSpeed) * this.orbit;
+  translation(deltaTime) {
+    this.mesh.position.x = Math.cos(deltaTime * this.rotationSpeed) * this.orbit;
+    this.mesh.position.z = Math.sin(deltaTime * this.rotationSpeed) * this.orbit;
   }
 }
