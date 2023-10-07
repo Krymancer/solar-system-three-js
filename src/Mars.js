@@ -2,7 +2,6 @@ import CelestialObject from "./CelestialObject";
 
 export default class Mars extends CelestialObject {
   constructor(scene) {
-    super(scene, '../assets/textures/mars.jpg', 671.8);
-    this.object.position.x = 6080;
+    super(scene, '../assets/textures/mars.jpg', 1.8, 'mars',0.2,40);
   }
 }
