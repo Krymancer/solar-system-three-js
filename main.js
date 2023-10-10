@@ -5,6 +5,7 @@ import Sun from "./src/Sun.js";
 import StarField from "./src/StarField.js";
 import getPlanets from "./src/planets.js";
 import Timer from "./src/Timer.js";
+import getSolarSystem from "./src/SolarSystem.js";
 
 const width = window.innerWidth;
 const height = window.innerHeight;
@@ -31,12 +32,11 @@ document.body.appendChild(renderer.domElement);
 const controls = new OrbitControls( camera, renderer.domElement );
 
 const starField = new StarField(scene);
-const sun = new Sun(scene);
-const planets = getPlanets(scene);
+const solarSystem = getSolarSystem(scene);
+// const planets = getPlanets(scene);
 
 const celestialObjects = [
-  sun,
-  ...planets
+  ...solarSystem
 ];
 
 camera.position.set(0,25,145);
