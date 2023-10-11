@@ -2,7 +2,6 @@ import * as THREE from "three";
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 import Sun from "./src/Sun.js";
-import StarField from "./src/StarField.js";
 import getPlanets from "./src/planets.js";
 import Timer from "./src/Timer.js";
 import getSolarSystem from "./src/SolarSystem.js";
@@ -31,7 +30,6 @@ document.body.appendChild(renderer.domElement);
 
 const controls = new OrbitControls( camera, renderer.domElement );
 
-const starField = new StarField(scene);
 const solarSystem = getSolarSystem(scene);
 // const planets = getPlanets(scene);
 
@@ -41,6 +39,10 @@ const celestialObjects = [
 
 camera.position.set(0,25,145);
 controls.update();
+
+
+// renderer.gammaInput = true;
+// renderer.gammaOutput = true;
 
 function main() {
   const timer = new Timer();

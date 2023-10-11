@@ -1,3 +1,5 @@
+import * as THREE from "three";
+
 import Mercury from "./Mercury";
 import Venus from "./Venus";
 import Earth from "./Earth";
@@ -8,8 +10,10 @@ import Uranus from "./Uranus";
 import Neptune from "./Neptune";
 import Sun from "./Sun";
 import Moon from "./Moon";
+import StarField from "./StarField";
 
 export default function getSolarSystem(scene) {
+    const starfield = new StarField(scene);
     const sun = new Sun(scene);
     const mercury = new Mercury(scene);
     const venus = new Venus(scene);
