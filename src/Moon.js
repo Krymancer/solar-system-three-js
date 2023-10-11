@@ -3,7 +3,7 @@ import * as THREE from "three";
 
 export default class Moon extends CelestialObject {
     constructor(scene, earth, radius, rotationSpeed,orbit) {
-        super(scene, '../assets/textures/moon.jpg', 0.5, 'moon', 1, false);
+        super(scene, '../assets/textures/moon.jpg', 0.3, 'moon', 1, false);
 
         this.object.position.x = this.orbit - 2;
         earth.mesh.add(this.object); // A Lua é filha da Terra

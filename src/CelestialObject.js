@@ -1,10 +1,11 @@
 import * as THREE from 'three';
 
 export default class CelestialObject {
-  constructor(scene, texturePath, radius, id, rotationSpeed, orbit) {
+  constructor(scene, texturePath, radius, id, rotationSpeed, orbit, selfRotationSpeed) {
     this.radius = radius;
     this.rotationAngle = 0;
     this.rotationSpeed = rotationSpeed;
+    this.selfRotationSpeed = selfRotationSpeed;
     this.object = new THREE.Object3D();
     this.geometry = new THREE.SphereGeometry(this.radius, 32, 16);
     this.texture = new THREE.TextureLoader().load(texturePath);
@@ -17,6 +18,8 @@ export default class CelestialObject {
     this.scene = scene;
     this.scene.add(this.object);
     this.scaleVector = new THREE.Vector3();
+    // variavel rotação
+    
 
     if(orbit){
       var shape = new THREE.EllipseCurve(0, 0, orbit, orbit);
@@ -38,11 +41,15 @@ export default class CelestialObject {
   
   update(deltaTime) {
     this.rotationAngle += this.rotationSpeed * deltaTime;
-    this.object.rotation.y = this.rotationAngle;
+    this.object.rotation.y = this.rotationAngle; 
+    //Nova linha para translação
+    this.mesh.rotation.y += this.selfRotationSpeed * deltaTime;
     this.translation(deltaTime);
   }
 
   translation(deltaTime) {
+    // const EARTH_YEAR = 2 * Math.PI * (1 / 60) * (1 / 60);
+    // this.mesh.rotation.y += EARTH_YEAR * 20;
     this.mesh.position.x = Math.cos(deltaTime * this.rotationSpeed) * this.orbit;
     this.mesh.position.z = Math.sin(deltaTime * this.rotationSpeed) * this.orbit;
   }
