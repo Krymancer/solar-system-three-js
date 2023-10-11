@@ -43,6 +43,7 @@ controls.update();
 
 // renderer.gammaInput = true;
 // renderer.gammaOutput = true;
+renderer.shadowMap.enabled = true;
 
 function main() {
   const timer = new Timer();

@@ -6,11 +6,19 @@ export default class CelestialObject {
     this.rotationAngle = 0;
     this.rotationSpeed = rotationSpeed;
     this.selfRotationSpeed = selfRotationSpeed;
+
     this.object = new THREE.Object3D();
     this.geometry = new THREE.SphereGeometry(this.radius, 32, 16);
     this.texture = new THREE.TextureLoader().load(texturePath);
     this.texture.colorSpace = THREE.SRGBColorSpace;
-    this.material = new THREE.MeshBasicMaterial({ map: this.texture });
+
+    if(id=='sun'){
+      this.material = new THREE.MeshBasicMaterial({map: this.texture})
+    }
+    else {
+      this.material = new THREE.MeshStandardMaterial({map: this.texture});
+    }
+
     this.mesh = new THREE.Mesh(this.geometry, this.material);
     this.mesh.userData.id = id;
     this.orbit = orbit
