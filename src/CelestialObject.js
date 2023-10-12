@@ -5,8 +5,8 @@ export default class CelestialObject {
     this.radius = radius;
     this.rotationAngle = 0;
     this.rotationSpeed = rotationSpeed;
-    this.selfRotationSpeed = selfRotationSpeed;
-
+    // Adicionado a velocidade de rotação em radianos
+    this.selfRotationSpeed = 2 * Math.PI * selfRotationSpeed;
     this.object = new THREE.Object3D();
     this.geometry = new THREE.SphereGeometry(this.radius, 32, 16);
     this.texture = new THREE.TextureLoader().load(texturePath);
@@ -26,7 +26,7 @@ export default class CelestialObject {
     this.scene = scene;
     this.scene.add(this.object);
     this.scaleVector = new THREE.Vector3();
-    // variavel rotação
+    
     
 
     if(orbit){
@@ -56,8 +56,6 @@ export default class CelestialObject {
   }
 
   translation(deltaTime) {
-    // const EARTH_YEAR = 2 * Math.PI * (1 / 60) * (1 / 60);
-    // this.mesh.rotation.y += EARTH_YEAR * 20;
     this.mesh.position.x = Math.cos(deltaTime * this.rotationSpeed) * this.orbit;
     this.mesh.position.z = Math.sin(deltaTime * this.rotationSpeed) * this.orbit;
   }

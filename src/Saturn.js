@@ -3,7 +3,7 @@ import CelestialObject from "./CelestialObject";
 
 export default class Saturn extends CelestialObject {
   constructor(scene) {
-    super(scene, '../assets/textures/saturn.jpg', 2.5,'saturn',0.05,70, 1.5);
+    super(scene, '../assets/textures/saturn.jpg', 3,'saturn',0.096,75, 0.043);
     this.rings = [];
     this.setupRings();
   }
