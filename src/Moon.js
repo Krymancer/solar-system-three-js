@@ -1,5 +1,4 @@
 import CelestialObject from "./CelestialObject";
-import * as THREE from "three";
 
 export default class Moon extends CelestialObject {
     constructor(scene, earth, radius, rotationSpeed,orbit) {

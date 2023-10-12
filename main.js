@@ -1,8 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-import Sun from "./src/Sun.js";
-import getPlanets from "./src/planets.js";
 import Timer from "./src/Timer.js";
 import getSolarSystem from "./src/SolarSystem.js";
 
@@ -25,9 +23,6 @@ const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(width, height);
 document.body.appendChild(renderer.domElement);
 
-// const axesHelper = new THREE.AxesHelper( 10000 );
-// scene.add( axesHelper );
-
 const controls = new OrbitControls( camera, renderer.domElement );
 
 const solarSystem = getSolarSystem(scene);
@@ -40,9 +35,6 @@ const celestialObjects = [
 camera.position.set(0,25,145);
 controls.update();
 
-
-// renderer.gammaInput = true;
-// renderer.gammaOutput = true;
 renderer.shadowMap.enabled = true;
 
 function main() {
