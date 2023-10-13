@@ -1,10 +1,8 @@
 import * as THREE from "three";
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-import Sun from "./src/Sun.js";
-import StarField from "./src/StarField.js";
-import getPlanets from "./src/planets.js";
 import Timer from "./src/Timer.js";
+import getSolarSystem from "./src/SolarSystem.js";
 
 const width = window.innerWidth;
 const height = window.innerHeight;
@@ -25,23 +23,48 @@ const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(width, height);
 document.body.appendChild(renderer.domElement);
 
-// const axesHelper = new THREE.AxesHelper( 10000 );
-// scene.add( axesHelper );
-
 const controls = new OrbitControls( camera, renderer.domElement );
 
-const starField = new StarField(scene);
-const sun = new Sun(scene);
-const planets = getPlanets(scene);
+const solarSystem = getSolarSystem(scene);
+// const planets = getPlanets(scene);
 
 const celestialObjects = [
-  sun,
-  ...planets
+  ...solarSystem
 ];
 
 camera.position.set(0,25,145);
 controls.update();
 
+renderer.shadowMap.enabled = true;
+// Adição de controle de teclas para posicionar a camera
+document.addEventListener('keydown', function(event) {
+  handleKeyDown(event);
+});
+
+function handleKeyDown(event) {
+  // Movimento teclado
+  switch (event.key) {
+    case 'w':
+        controls.object.position.z -= 1;
+        break;
+    case 's':
+        controls.object.position.z += 1;
+        break;
+    case 'a':
+        controls.object.position.x -= 1;
+        break;
+    case 'd':
+        controls.object.position.x += 1;
+        break;
+    case 'q':   //Cima
+        controls.object.position.y += 1;
+        break;
+    case 'e':   //Baixo
+        controls.object.position.y -= 1;
+        break;
+}
+  
+}
 function main() {
   const timer = new Timer();
 

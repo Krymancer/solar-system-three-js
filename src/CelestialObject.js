@@ -1,15 +1,24 @@
 import * as THREE from 'three';
 
 export default class CelestialObject {
-  constructor(scene, texturePath, radius, id, rotationSpeed, orbit) {
+  constructor(scene, texturePath, radius, id, rotationSpeed, orbit, selfRotationSpeed) {
     this.radius = radius;
     this.rotationAngle = 0;
     this.rotationSpeed = rotationSpeed;
+    // Adicionado a velocidade de rotação em radianos
+    this.selfRotationSpeed = 2 * Math.PI * selfRotationSpeed;
     this.object = new THREE.Object3D();
     this.geometry = new THREE.SphereGeometry(this.radius, 32, 16);
     this.texture = new THREE.TextureLoader().load(texturePath);
     this.texture.colorSpace = THREE.SRGBColorSpace;
-    this.material = new THREE.MeshBasicMaterial({ map: this.texture });
+
+    if(id=='sun'){
+      this.material = new THREE.MeshBasicMaterial({map: this.texture})
+    }
+    else {
+      this.material = new THREE.MeshStandardMaterial({map: this.texture});
+    }
+
     this.mesh = new THREE.Mesh(this.geometry, this.material);
     this.mesh.userData.id = id;
     this.orbit = orbit
@@ -17,6 +26,8 @@ export default class CelestialObject {
     this.scene = scene;
     this.scene.add(this.object);
     this.scaleVector = new THREE.Vector3();
+    
+    
 
     if(orbit){
       var shape = new THREE.EllipseCurve(0, 0, orbit, orbit);
@@ -38,7 +49,9 @@ export default class CelestialObject {
   
   update(deltaTime) {
     this.rotationAngle += this.rotationSpeed * deltaTime;
-    this.object.rotation.y = this.rotationAngle;
+    this.object.rotation.y = this.rotationAngle; 
+    //Nova linha para translação
+    this.mesh.rotation.y += this.selfRotationSpeed * deltaTime;
     this.translation(deltaTime);
   }
 
