@@ -7,7 +7,6 @@ export default class Mars extends CelestialObject {
 
     //Criando Luas de marte
     const moon = new Moon(scene, this, 3);
-    
   }
  
 }

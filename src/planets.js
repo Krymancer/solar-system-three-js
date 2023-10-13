@@ -7,7 +7,6 @@ import Saturn from "./Saturn";
 import Uranus from "./Uranus";
 import Neptune from "./Neptune";
 
-
 export default function getPlanets(scene) {
   const mercury = new Mercury(scene);
   const venus = new Venus(scene);
