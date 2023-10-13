@@ -6,11 +6,54 @@
 		<style>
 			body { 
         margin: 0; 
-        background-color: white;
+        background-color: black;
       }
+	  .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #5a5a5a86;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-item {
+			background-color: rgb(18, 18, 18);
+            padding: 6px 3px;
+            text-decoration: none;
+            display: block;
+			color: white;
+			
+        }
+
+        .dropdown-item:hover {
+            background-color: #1f1f1f;
+			color: rgb(218, 205, 56);
+			text-decoration: solid;
+        }
 		</style>
 	</head>
 	<body>
+		<div class="dropdown">
+			<button class="dropdown-item">Teclas de Movimentação</button>
+			<div class="dropdown-content">
+				<a class="dropdown-item" href="#">W - Zoom in eixo Z</a>
+				<a class="dropdown-item" href="#">S - Zoom out eixo Z</a>
+				<a class="dropdown-item" href="#">A - Left eixo X</a>
+				<a class="dropdown-item" href="#">D - Right eixo X</a>
+				<a class="dropdown-item" href="#">Q - Up eixo Y</a>
+				<a class="dropdown-item" href="#">E - Down eixo Y</a>
+			</div>
+		</div>
 		<script type="module" src="/main.js"></script>
 		<script type="module" src="src/CelestialObject.js"></script>
 	</body>

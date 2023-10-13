@@ -36,7 +36,35 @@ camera.position.set(0,25,145);
 controls.update();
 
 renderer.shadowMap.enabled = true;
+// Adição de controle de teclas para posicionar a camera
+document.addEventListener('keydown', function(event) {
+  handleKeyDown(event);
+});
 
+function handleKeyDown(event) {
+  // Movimento teclado
+  switch (event.key) {
+    case 'w':
+        controls.object.position.z -= 1;
+        break;
+    case 's':
+        controls.object.position.z += 1;
+        break;
+    case 'a':
+        controls.object.position.x -= 1;
+        break;
+    case 'd':
+        controls.object.position.x += 1;
+        break;
+    case 'q':   //Cima
+        controls.object.position.y += 1;
+        break;
+    case 'e':   //Baixo
+        controls.object.position.y -= 1;
+        break;
+}
+  
+}
 function main() {
   const timer = new Timer();
 

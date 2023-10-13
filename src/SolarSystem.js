@@ -18,8 +18,9 @@ export default function getSolarSystem(scene) {
     const mercury = new Mercury(scene);
     const venus = new Venus(scene);
     const earth = new Earth(scene);
-    const moon = new Moon(scene,earth);
+    const moon = new Moon(scene,earth, 4);
     const mars = new Mars(scene);
+    const moon2 = new Moon(scene,mars, 2);
     const jupiter = new Jupiter(scene);
     const saturn = new Saturn(scene);
     const uranus = new Uranus(scene);
@@ -32,6 +33,7 @@ export default function getSolarSystem(scene) {
         earth,
         moon,
         mars,
+        moon2,
         jupiter,
         saturn,
         uranus,
