@@ -59,7 +59,7 @@ Make sure you have these dependencies installed before running the project.
 
 ## Video Demonstration <a name="video-demonstration"></a>
 
-For a detailed demonstration of the project, please watch our video on YouTube: [Solar System Simulation Video](insert_youtube_link_here).
+For a detailed demonstration of the project, please watch our video on YouTube: [Solar System Simulation Video](https://youtu.be/1DUpfxJ9dOY).
 
 ## Equipe 08 - Team Members
 
